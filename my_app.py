@@ -4,8 +4,6 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import numpy  as np
-
 
 st.set_page_config(page_title="ESG AI", layout='centered', initial_sidebar_state="collapsed")
 style = ("text-align:center; padding: 0px; font-family: arial black;, "
