@@ -4,6 +4,8 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import numpy  as np
+
 
 st.set_page_config(page_title="ESG AI", layout='centered', initial_sidebar_state="collapsed")
 style = ("text-align:center; padding: 0px; font-family: arial black;, "
@@ -16,7 +18,14 @@ companies = ['Select a Company', 'Airbnb', 'Airbnb']
 company = st.selectbox('Select a Company to Analyze', companies)
 if company and company != "Select a Company":
     # 1st plot
-    if st.button('SASB dimensions / Volume & Intelligence Score'):
+    col1, col2 = st.beta_columns((1, 3))
+
+    metric_options = ['SASB dimensions / Volume & Intelligence Score', 'Social Capital SASB Intelligence Score',
+                          'Human Capital SASB Intelligence Score', 'Leadership & Governance SASB Intelligence Score',
+                          'Business Model & Innovation SASB Intelligence Score']
+    line_metric = col1.radio("Choose Option", options=metric_options)
+
+    if line_metric == 'SASB dimensions / Volume & Intelligence Score':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -84,7 +93,7 @@ if company and company != "Select a Company":
         fig.update_layout(
             title={
                 'y':0.9,
-                'x':0.6,
+                'x':0.7,
                 'xanchor': 'right',
                 'yanchor': 'top'})
 
@@ -93,10 +102,22 @@ if company and company != "Select a Company":
                 title_font = {"size": 14},
                 title_standoff = 100,
                 tickmode= "auto")
-
-        st.plotly_chart(fig)
+        
+        fig.update_layout(
+            autosize=False,
+            width=570,
+            height=450,
+            margin=dict(
+            l=50,
+            r=50,
+            b=100,
+            t=100,
+            pad=4
+            ),
+        )
+        col2.plotly_chart(fig)
     # 2nd plot
-    if st.button('Social Capital SASB Intelligence Score'):
+    elif line_metric == 'Social Capital SASB Intelligence Score':
 
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -152,7 +173,7 @@ if company and company != "Select a Company":
         fig.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.45,
+            y=-0.5,
             xanchor="center",
             x=0.5
         ))
@@ -162,7 +183,7 @@ if company and company != "Select a Company":
         fig.update_layout(
             title={
                 'y':0.9,
-                'x':0.5,
+                'x':0.56,
                 'xanchor': 'right',
                 'yanchor': 'top'})
 
@@ -171,11 +192,23 @@ if company and company != "Select a Company":
                 title_font = {"size": 14},
                 title_standoff = 100,
                 tickmode= "auto")
+        
+        fig.update_layout(
+            autosize=False,
+            width=570,
+            height=450,
+            margin=dict(
+            l=50,
+            r=50,
+            b=100,
+            t=100,
+            pad=4
+            ),
+        )
 
-
-        st.plotly_chart(fig)
+        col2.plotly_chart(fig)
     # 3rd plot
-    if st.button('Human Capital SASB Intelligence Score'):
+    elif line_metric == 'Human Capital SASB Intelligence Score':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -239,7 +272,7 @@ if company and company != "Select a Company":
         fig.update_layout(
             title={
                 'y':0.9,
-                'x':0.5,
+                'x':0.58,
                 'xanchor': 'right',
                 'yanchor': 'top'})
 
@@ -248,10 +281,23 @@ if company and company != "Select a Company":
                 title_font = {"size": 14},
                 title_standoff = 100,
                 tickmode= "auto")
-        
-        st.plotly_chart(fig)
+
+        fig.update_layout(
+            autosize=False,
+            width=570,
+            height=450,
+            margin=dict(
+            l=50,
+            r=50,
+            b=100,
+            t=100,
+            pad=4
+            ),
+        )
+        col2.plotly_chart(fig)
     # 4th plot
-    if st.button('Leadership & Governance SASB Intelligence Score'):
+    elif line_metric == 'Leadership & Governance SASB Intelligence Score':
+
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -312,7 +358,7 @@ if company and company != "Select a Company":
             yanchor="bottom",
             y=-0.6,
             xanchor="center",
-            x=0.5
+            x=0.42
         ))
 
         fig.update_layout(plot_bgcolor="#FFFFFF")
@@ -320,7 +366,7 @@ if company and company != "Select a Company":
         fig.update_layout(
             title={
                 'y':0.9,
-                'x':0.63,
+                'x':0.74,
                 'xanchor': 'right',
                 'yanchor': 'top'})
 
@@ -329,10 +375,23 @@ if company and company != "Select a Company":
                 title_font = {"size": 14},
                 title_standoff = 100,
                 tickmode= "auto")
+
+        fig.update_layout(
+            autosize=False,
+            width=570,
+            height=450,
+            margin=dict(
+            l=50,
+            r=50,
+            b=100,
+            t=100,
+            pad=4
+            ),
+        )
         
-        st.plotly_chart(fig)
+        col2.plotly_chart(fig)
     # 5th plot
-    if st.button('Business Model & Innovation SASB Intelligence Score'):
+    elif line_metric == 'Business Model & Innovation SASB Intelligence Score':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -385,7 +444,7 @@ if company and company != "Select a Company":
         fig.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.27,
+            y=-0.31,
             xanchor="center",
             x=0.5
         ))
@@ -395,7 +454,7 @@ if company and company != "Select a Company":
         fig.update_layout(
             title={
                 'y':0.9,
-                'x':0.67,
+                'x':0.78,
                 'xanchor': 'right',
                 'yanchor': 'top'})
 
@@ -405,4 +464,17 @@ if company and company != "Select a Company":
                 title_standoff = 100,
                 tickmode= "auto")
 
-        st.plotly_chart(fig)
+        fig.update_layout(
+            autosize=False,
+            width=570,
+            height=450,
+            margin=dict(
+            l=50,
+            r=50,
+            b=100,
+            t=100,
+            pad=4
+            ),
+        )
+        
+        col2.plotly_chart(fig)
