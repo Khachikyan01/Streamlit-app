@@ -59,7 +59,7 @@ if company and company != "Select a Company":
         fig.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.6,
+            y=-0.44,
             xanchor="center",
             x=0.5
         ))
