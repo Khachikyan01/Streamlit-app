@@ -4,8 +4,9 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-# from matplotlib import pyplot as plt
-from matplotlib.patches import Rectangle
+
+
+
 currentDirectory = os.path.abspath(os.getcwd())
 dataPath = os.path.join(currentDirectory, "MainDataNotFull.csv")
 df1 = pd.read_csv(dataPath)
