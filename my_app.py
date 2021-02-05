@@ -4,8 +4,8 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
-
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
 currentDirectory = os.path.abspath(os.getcwd())
 dataPath = os.path.join(currentDirectory, "MainDataNotFull.csv")
@@ -36,10 +36,20 @@ companies = ['Select a Company', 'Airbnb', 'Airbnb'] # companies list
 company = st.selectbox('Select a Company to Analyze', companies)
 if company and company != "Select a Company":
 
-    col3, col4 = st.beta_columns((3, 3))
+    col3, col4, col5 = st.beta_columns((3, 3, 1))
     col3.dataframe(df1)
     col4.dataframe(df1)
-
+    hfont = {'fontname':'Comic Sans MS'}
+    efont = {'fontname':'Corbel'}
+    value = '111.1 mln $'
+    plt1 = plt.figure()
+    currentAxis = plt1.gca()
+    currentAxis.add_patch(Rectangle((0.1, 0.2), 0.7, 0.5, fill=None, alpha=10))
+    plt1.text(0.15, 0.55, 'Brackmard minimum', fontsize=16, **hfont)
+    plt1.text(0.15, 0.35, value , fontsize=20, **efont)
+    plt1.axis('off')
+    col5.pyplot(plt1)
+    
     colT, col6, col7, col8 = st.beta_columns((0.35, 0.1, 0.1, 0.1))
     col9, col10 = st.beta_columns((3, 3))
     def buttons(col, text):
