@@ -4,9 +4,11 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
-df1 = pd.read_csv(r'C:\Users\khach\MainLinksData.csv')# 1st dataframe
-df2 = pd.read_csv(r'C:\Users\khach\companies_s&p_pdf.csv')# 2nd dataframe
+# from matplotlib import pyplot as plt
+from matplotlib.patches import Rectangle
+currentDirectory = os.path.abspath(os.getcwd())
+dataPath = os.path.join(currentDirectory, "MainDataNotFull.csv")
+df1 = pd.read_csv(dataPath)
 
 #page config
 st.set_page_config(page_title="ESG AI", layout='wide', initial_sidebar_state="expanded")
