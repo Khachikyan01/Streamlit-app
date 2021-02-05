@@ -5,7 +5,7 @@ import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-st.set_page_config(page_title="ESG AI", layout='centered', initial_sidebar_state="collapsed")
+st.set_page_config(page_title="ESG AI", layout='wide', initial_sidebar_state="expanded")
 style = ("text-align:center; padding: 0px; font-family: arial black;, "
          "font-size: 400%")
 title = f"<h1 style='{style}'>DataESG<sup>AI</sup></h1><br><br>"
