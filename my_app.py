@@ -4,9 +4,6 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-# from matplotlib import pyplot as plt
-from matplotlib.patches import Rectangle
-
 
 df1 = pd.read_csv(r'C:\Users\khach\MainLinksData.csv')# 1st dataframe
 df2 = pd.read_csv(r'C:\Users\khach\companies_s&p_pdf.csv')# 2nd dataframe
