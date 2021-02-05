@@ -18,12 +18,12 @@ if company and company != "Select a Company":
     # 1st plot
     col1, col2 = st.beta_columns((1, 3))
 
-    metric_options = ['SASB dimensions / Volume & Intelligence Score', 'Social Capital SASB Intelligence Score',
-                          'Human Capital SASB Intelligence Score', 'Leadership & Governance SASB Intelligence Score',
-                          'Business Model & Innovation SASB Intelligence Score']
+    metric_options = ['SASB dimensions', 'SASB Social Capital',
+                          'SASB Human Capital', 'SASB Leadership & Governance',
+                          'SASB Business Model & Innovation']
     line_metric = col1.radio("Choose Option", options=metric_options)
 
-    if line_metric == 'SASB dimensions / Volume & Intelligence Score':
+    if line_metric == 'SASB dimensions':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -114,8 +114,14 @@ if company and company != "Select a Company":
             ),
         )
         col2.plotly_chart(fig)
+
+        st.write("""
+        Simple Stock Price App
+        Shown are the stock **closing price** and ***volume*** of Google!
+        """)
+
     # 2nd plot
-    elif line_metric == 'Social Capital SASB Intelligence Score':
+    elif line_metric == 'SASB Social Capital':
 
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -206,7 +212,7 @@ if company and company != "Select a Company":
 
         col2.plotly_chart(fig)
     # 3rd plot
-    elif line_metric == 'Human Capital SASB Intelligence Score':
+    elif line_metric == 'SASB Human Capital':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -294,7 +300,7 @@ if company and company != "Select a Company":
         )
         col2.plotly_chart(fig)
     # 4th plot
-    elif line_metric == 'Leadership & Governance SASB Intelligence Score':
+    elif line_metric == 'SASB Leadership & Governance':
 
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -389,7 +395,7 @@ if company and company != "Select a Company":
         
         col2.plotly_chart(fig)
     # 5th plot
-    elif line_metric == 'Business Model & Innovation SASB Intelligence Score':
+    elif line_metric == 'SASB Business Model & Innovation':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -476,3 +482,4 @@ if company and company != "Select a Company":
         )
         
         col2.plotly_chart(fig)
+
