@@ -4,8 +4,6 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
 
 currentDirectory = os.path.abspath(os.getcwd())
 dataPath = os.path.join(currentDirectory, "MainDataNotFull.csv")
@@ -39,20 +37,7 @@ if company and company != "Select a Company":
     col3, col4, col5 = st.beta_columns((3, 3, 2))
     col3.dataframe(df1)
     col4.dataframe(df1)
-    hfont = {'fontname':'Comic Sans MS'}
-    efont = {'fontname':'Corbel'}
-    value1 = '111.1 mln $'
-    value2 = '22.2 mln $'
-    plt1 = plt.figure()
-    currentAxis = plt1.gca()
-    currentAxis.set_axis_off()
-    currentAxis.add_patch(Rectangle((0.1, 0.01), 0.7, 0.4, fill=None, alpha=10))
-    plt1.text(0.25, 0.7, 'Brackmard minimum', fontsize=20, **hfont)
-    plt1.text(0.25, 0.55, value1 , fontsize=30, **efont)
-    currentAxis.add_patch(Rectangle((0.1, 0.49), 0.7, 0.4, fill=None, alpha=10))
-    plt1.text(0.25, 0.33, 'Brackmard minimum', fontsize=20, **hfont)
-    plt1.text(0.25, 0.175, value2 , fontsize=30, **efont)
-    col5.pyplot(plt1)
+    # col5.pyplot(plt1)
     
     
     colT, col6, col7, col8 = st.beta_columns((0.35, 0.1, 0.1, 0.1))
