@@ -115,10 +115,7 @@ if company and company != "Select a Company":
         )
         col2.plotly_chart(fig)
 
-        st.write("""
-        Simple Stock Price App
-        Shown are the stock **closing price** and ***volume*** of Google!
-        """)
+      
 
     # 2nd plot
     elif line_metric == 'SASB Social Capital':
