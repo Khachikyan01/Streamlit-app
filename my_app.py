@@ -4,25 +4,238 @@ import os
 import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+# from matplotlib import pyplot as plt
+from matplotlib.patches import Rectangle
 
+
+df1 = pd.read_csv(r'C:\Users\khach\MainLinksData.csv')# 1st dataframe
+df2 = pd.read_csv(r'C:\Users\khach\companies_s&p_pdf.csv')# 2nd dataframe
+
+#page config
 st.set_page_config(page_title="ESG AI", layout='wide', initial_sidebar_state="expanded")
 style = ("text-align:center; padding: 0px; font-family: arial black;, "
          "font-size: 400%")
 title = f"<h1 style='{style}'>DataESG<sup>AI</sup></h1><br><br>"
 st.write(title, unsafe_allow_html=True)
 
+st.markdown(
+        f"""
+<style>
+    .reportview-container .main .block-container{{
+        max-width: {1500}px;
+    }}
+    .reportview-container .main {{
 
-companies = ['Select a Company', 'Airbnb', 'Airbnb'] 
+    }}
+</style>
+""",
+        unsafe_allow_html=True,
+    )
+
+companies = ['Select a Company', 'Airbnb', 'Airbnb'] # companies list
 company = st.selectbox('Select a Company to Analyze', companies)
 if company and company != "Select a Company":
-    # 1st plot
-    col1, col2 = st.beta_columns((1, 3))
 
+    col3, col4 = st.beta_columns((3, 3))
+    col3.dataframe(df1)
+    col4.dataframe(df1)
+
+    colT, col6, col7, col8 = st.beta_columns((0.35, 0.1, 0.1, 0.1))
+    col9, col10 = st.beta_columns((3, 3))
+    def buttons(col, text):
+        if col.button(text):
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            categories = [ 'Environment',
+                'Social <br>Capital',
+                'Human <br>Capital',
+                'Leadership & <br>Governance',
+                'Business Model & <br>Innovation']
+
+            # Add traces
+            fig.add_trace(go.Scatter(x=categories, y=[50.38,49.84,47.82,48.37,53.73], name="Intelligence Score", line_shape='spline',mode="lines+markers+text",              
+                text=['<b>50.38</b>','<b>49.84</b>','<b>47.82</b>','<b>48.37</b>','<b>53.73</b>'], # Bold version <b> </b>
+                textposition="top center",
+                marker_color='#DDA0DD',                
+                textfont=dict(
+                    family="Corbel",
+                    size=14,
+                    color="#cb91ce "
+                )),
+                secondary_y=True,
+            )
+            fig.add_trace(go.Scatter(x=categories, y=[50]*len(categories) , name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+                secondary_y=True,
+            )
+
+
+            fig.add_trace(
+                go.Bar(x=categories, y=[0.03,0.13,0.22,0.52,0.09], name="Volume / Contribution of<br>each SASB dimension",text=['3%','13%','22%','52%','9%'],
+                    textposition='auto',
+                    marker_color='#8B008B',
+                      ),
+                secondary_y=False, 
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="SASB dimensions / Volume & Intelligence Score",
+            )
+
+            fig.update_layout(legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.44,
+                xanchor="center",
+                x=0.5
+            ))
+
+            fig.update_layout(
+                yaxis = dict(
+                    tickformat = ',.0%',
+                    range = [0,0.6]        
+                )
+            )
+            fig.update_layout(
+                font=dict(
+                    family="Corbel",
+                    size=14,
+                    color="#000000"
+                )
+            )
+            fig.update_layout(plot_bgcolor="#FFFFFF")
+
+
+
+            fig.update_layout(
+                title={
+                    'y':0.9,
+                    'x':0.7,
+                    'xanchor': 'right',
+                    'yanchor': 'top'})
+
+            fig.update_xaxes(
+                    tickangle = 0,
+                    title_font = {"size": 14},
+                    title_standoff = 100,
+                    tickmode= "auto")
+            
+            fig.update_layout(
+                autosize=False,
+                width=570,
+                height=450,
+                margin=dict(
+                l=50,
+                r=50,
+                b=100,
+                t=100,
+                pad=4
+                ),
+            )
+            col9.plotly_chart(fig)
+            
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            categories = [ 'Environment',
+                'Social <br>Capital',
+                'Human <br>Capital',
+                'Leadership & <br>Governance',
+                'Business Model & <br>Innovation']
+
+            # Add traces
+            fig.add_trace(go.Scatter(x=categories, y=[50.38,49.84,47.82,48.37,53.73], name="Intelligence Score", line_shape='spline',mode="lines+markers+text",              
+                text=['<b>50.38</b>','<b>49.84</b>','<b>47.82</b>','<b>48.37</b>','<b>53.73</b>'], # Bold version <b> </b>
+                textposition="top center",
+                marker_color='#DDA0DD',                
+                textfont=dict(
+                    family="Corbel",
+                    size=14,
+                    color="#cb91ce "
+                )),
+                secondary_y=True,
+            )
+            fig.add_trace(go.Scatter(x=categories, y=[50]*len(categories) , name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+                secondary_y=True,
+            )
+
+
+            fig.add_trace(
+                go.Bar(x=categories, y=[0.03,0.13,0.22,0.52,0.09], name="Volume / Contribution of<br>each SASB dimension",text=['3%','13%','22%','52%','9%'],
+                    textposition='auto',
+                    marker_color='#8B008B',
+                      ),
+                secondary_y=False, 
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="SASB dimensions / Volume & Intelligence Score",
+            )
+
+            fig.update_layout(legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.44,
+                xanchor="center",
+                x=0.5
+            ))
+
+            fig.update_layout(
+                yaxis = dict(
+                    tickformat = ',.0%',
+                    range = [0,0.6]        
+                )
+            )
+            fig.update_layout(
+                font=dict(
+                    family="Corbel",
+                    size=14,
+                    color="#000000"
+                )
+            )
+            fig.update_layout(plot_bgcolor="#FFFFFF")
+
+
+
+            fig.update_layout(
+                title={
+                    'y':0.9,
+                    'x':0.7,
+                    'xanchor': 'right',
+                    'yanchor': 'top'})
+
+            fig.update_xaxes(
+                    tickangle = 0,
+                    title_font = {"size": 14},
+                    title_standoff = 100,
+                    tickmode= "auto")
+            
+            fig.update_layout(
+                autosize=False,
+                width=570,
+                height=450,
+                margin=dict(
+                l=50,
+                r=50,
+                b=100,
+                t=100,
+                pad=4
+                ),
+            )
+            col10.plotly_chart(fig)
+    buttons(col6, "1st button")
+    buttons(col7, "2nd button")
+    buttons(col8, "3rd button")
+
+    col1, col2= st.beta_columns((1, 4))
     metric_options = ['SASB dimensions', 'SASB Social Capital',
                           'SASB Human Capital', 'SASB Leadership & Governance',
                           'SASB Business Model & Innovation']
     line_metric = col1.radio("Choose Option", options=metric_options)
-
+    
+    # 1st plot
     if line_metric == 'SASB dimensions':
         # Create figure with secondary y-axis
         fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -115,7 +328,7 @@ if company and company != "Select a Company":
         )
         col2.plotly_chart(fig)
 
-      
+
 
     # 2nd plot
     elif line_metric == 'SASB Social Capital':
