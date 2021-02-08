@@ -13,7 +13,6 @@ def make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-
     # Add traces
     fig.add_trace(go.Scatter(x=categories, y=traceY, name=traceName, line_shape='spline',mode="lines+markers+text",              
         text=['<br>{num}</br>'.format(num = i) for i in traceY],
