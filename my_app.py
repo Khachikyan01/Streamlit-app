@@ -315,10 +315,10 @@ if company and company != "Select a Company":
     dataPath2 = os.path.join(dataPath, "Operating Performance Metrics.csv")
     dataPath3 = os.path.join(dataPath, "Financials--Income Statement.csv")
     dataPath4 = os.path.join(dataPath, "Financials--Cash Flow.csv")
-    df1 = pd.read_csv(dataPath1)
-    df2 = pd.read_csv(dataPath2)
-    df3 = pd.read_csv(dataPath3)
-    df4 = pd.read_csv(dataPath4)
+    df1 = pd.read_csv(dataPath1.replace("nan", ""))
+    df2 = pd.read_csv(dataPath2.replace("nan", ""))
+    df3 = pd.read_csv(dataPath3.replace("nan", ""))
+    df4 = pd.read_csv(dataPath4.replace("nan", ""))
     if col7_1.button("Financial Performance"):
         style = ("text-align:left; padding: 0px; font-family: corbel;, "
              "font-size: 150%")
