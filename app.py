@@ -153,7 +153,7 @@ def make_rect(text, value, col):
     currentAxis.set_axis_off()
     currentAxis.add_patch(Rectangle((0.2, 0.3), 0.7, 0.4, fill=None, alpha=10))
     plt1.text(0.3, 0.39, text, fontsize=15, **hfont)
-    plt1.text(0.3, 0.51, value1 , fontsize=40, **hfont)
+    plt1.text(0.3, 0.51, value , fontsize=40, **hfont)
     col.pyplot(plt1)
 
 # page config
