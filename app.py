@@ -300,16 +300,21 @@ if company and company != "Select a Company":
     text2 = """
      345
     """ # text under 2nd plot
-    image = Image.open(r'C:\Users\khach\screen_airbnb.png')    
-    make_button(col5_1, "SASB Env", col6_1, col6_2, col7_1, text1, text2, image)
-    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
-    make_button(col5_2, "SASB SOC", col6_1, col6_2, col7_1, text, text2, image)
-    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
-    make_button(col5_3, "SASB HUM", col6_1, col6_2, col7_1, text, text2, image)
-    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
-    make_button(col5_4, "SASB BUS", col6_1, col6_2, col7_1, text, text2, image)
-    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
-    make_button(col5_5, "SASB LEAD", col6_1, col6_2, col7_1, text, text2, image)
+    imagePath = os.path.join(dataPath, "screen_airbnb.jpg")
+    image1 = Image.open(imagePath) 
+    make_button(col5_1, "SASB Env", col6_1, col6_2, col7_1, text1, text2, image1)
+    imagePath = os.path.join(dataPath, "screen_airbnb.jpg")
+    image2 = Image.open(imagePath)
+    make_button(col5_2, "SASB SOC", col6_1, col6_2, col7_1, text, text2, image2)
+    imagePath = os.path.join(dataPath, "screen_airbnb.jpg")
+    image3 = Image.open(imagePath)
+    make_button(col5_3, "SASB HUM", col6_1, col6_2, col7_1, text, text2, image3)
+    imagePath = os.path.join(dataPath, "screen_airbnb.jpg")
+    image4 = Image.open(imagePath)
+    make_button(col5_4, "SASB BUS", col6_1, col6_2, col7_1, text, text2, image4)
+    imagePath = os.path.join(dataPath, "screen_airbnb.jpg")
+    image5 = Image.open(imagePath)
+    make_button(col5_5, "SASB LEAD", col6_1, col6_2, col7_1, text, text2, image5)
     
 # text line
     st.write('---')
