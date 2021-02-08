@@ -96,7 +96,9 @@ def make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY
     col.plotly_chart(fig)
     
 
-def make_button(col, text, col1, col2):
+def make_button(col, text, col1, col2, col3, text1, text2, image):
+    style = ("text-align:left; padding: 0px; font-family: arial black;, "
+         "font-size: 300%")
     if col.button(text):
         categories = [ 'Environment',
             'Social <br>Capital',
@@ -115,6 +117,11 @@ def make_button(col, text, col1, col2):
         yRange = [0,0.6]
         make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY, titleX, titleY, textPos, yRange, col1)
         make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY, titleX, titleY, textPos, yRange, col2)
+        col1.markdown(text1)# text under 1st plot
+        col1.markdown("---")
+        col2.markdown(text2)# text under 2nd plot
+        col2.markdown("---")
+        col3.image(image, width = 900)
 
 def make_button_df(col, text, df1, df2, col1, col2):
     if col.button(text):
@@ -284,13 +291,25 @@ if company and company != "Select a Company":
 # 5th line
     col_T, col5_1, col5_2, col5_3, col5_4, col5_5 = st.beta_columns((0.25, 0.1, 0.1, 0.1, 0.1, 0.1))
 # 6th line
-    col6_1, col6_2 = st.beta_columns((3, 3))
-    
-    make_button(col5_1, "SASB Env", col6_1, col6_2)
-    make_button(col5_2, "SASB SOC", col6_1, col6_2)
-    make_button(col5_3, "SASB HUM", col6_1, col6_2)
-    make_button(col5_4, "SASB BUS", col6_1, col6_2)
-    make_button(col5_5, "SASB LEAD", col6_1, col6_2)
+    col6_T, col6_1, col6_2 = st.beta_columns((0.4, 3, 3))
+    col7_T, col7_1 = st.beta_columns((1, 5))
+# 7th line
+    text1 = """
+     123
+    """ # text under 1st plot
+    text2 = """
+     345
+    """ # text under 2nd plot
+    image = Image.open(r'C:\Users\khach\screen_airbnb.png')    
+    make_button(col5_1, "SASB Env", col6_1, col6_2, col7_1, text1, text2, image)
+    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
+    make_button(col5_2, "SASB SOC", col6_1, col6_2, col7_1, text, text2, image)
+    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
+    make_button(col5_3, "SASB HUM", col6_1, col6_2, col7_1, text, text2, image)
+    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
+    make_button(col5_4, "SASB BUS", col6_1, col6_2, col7_1, text, text2, image)
+    image = Image.open(r'C:\Users\khach\screen_airbnb.png')
+    make_button(col5_5, "SASB LEAD", col6_1, col6_2, col7_1, text, text2, image)
     
 # text line
     st.write('---')
@@ -301,47 +320,47 @@ if company and company != "Select a Company":
     st.write(title, unsafe_allow_html=True)
     st.write('---')
 
-# 7th line
-    col_T, col7_1, col7_2 = st.beta_columns((0.27, 0.31, 0.3))
 # 8th line
-    col_T, col8 = st.beta_columns((1.3, 3))
+    col_T, col8_1, col8_2 = st.beta_columns((0.27, 0.31, 0.3))
 # 9th line
     col_T, col9 = st.beta_columns((1.3, 3))
 # 10th line
     col_T, col10 = st.beta_columns((1.3, 3))
+# 11th line
+    col_T, col11 = st.beta_columns((1.3, 3))
     
-    dataPath1 = os.path.join(dataPath, "Financials--Balance Sheet.csv")
-    dataPath2 = os.path.join(dataPath, "Operating Performance Metrics.csv")
-    dataPath3 = os.path.join(dataPath, "Financials--Income Statement.csv")
-    dataPath4 = os.path.join(dataPath, "Financials--Cash Flow.csv")
+    dataPath1 = os.path.join(currentDirectory, "Financials--Balance Sheet.csv")
+    dataPath2 = os.path.join(currentDirectory, "Operating Performance Metrics.csv")
+    dataPath3 = os.path.join(currentDirectory, "Financials--Income Statement.csv")
+    dataPath4 = os.path.join(currentDirectory, "Financials--Cash Flow.csv")
     df1 = pd.read_csv(dataPath1)
     df2 = pd.read_csv(dataPath2)
     df3 = pd.read_csv(dataPath3)
     df4 = pd.read_csv(dataPath4)
-    if col7_1.button("Financial Performance"):
+    if col8_1.button("Financial Performance"):
         style = ("text-align:left; padding: 0px; font-family: corbel;, "
              "font-size: 150%")
     
         title = f"<h1 style='{style}'>Balance Sheet</h1>"
-        col8.write(title, unsafe_allow_html=True)
-        col8.dataframe(df1.fillna(""))
-        col8.write('---')
-        title = f"<h1 style='{style}'>Income Statement</h1>"
         col9.write(title, unsafe_allow_html=True)
-        df3 = df3.loc[:, df3.columns.notnull()]
-        col9.dataframe(df3.fillna(""))
+        col9.dataframe(df1)
         col9.write('---')
-        title = f"<h1 style='{style}'>Cash Flow</h1>"
+        title = f"<h1 style='{style}'>Income Statement</h1>"
         col10.write(title, unsafe_allow_html=True)
-        col10.dataframe(df4.fillna(""))
+        df3 = df3.loc[:, df3.columns.notnull()]
+        col10.dataframe(df3)
         col10.write('---')
-    if col7_2.button("Operating Performance"):
+        title = f"<h1 style='{style}'>Cash Flow</h1>"
+        col11.write(title, unsafe_allow_html=True)
+        col11.dataframe(df4)
+        col10.write('---')
+    if col8_2.button("Operating Performance"):
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
              "font-size: 150%")
         title = f"<h1 style='{style}'>Operating Metrics</h1>"
-        col8.write(title, unsafe_allow_html=True)
-        col8.dataframe(df2.fillna(""))
-        col8.write('---')
+        col9.write(title, unsafe_allow_html=True)
+        col9.dataframe(df2)
+        col9.write('---')
 #   make_button_df(col7_1, "1st button", df1, df2, df col8_1, col8_2)
 #   make_button_df(col7_2, "2nd button", df3, df4, col8_1, col8_2)
     
