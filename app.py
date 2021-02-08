@@ -348,23 +348,23 @@ if company and company != "Select a Company":
     
         title = f"<h1 style='{style}'>Balance Sheet</h1>"
         col9.write(title, unsafe_allow_html=True)
-        col9.dataframe(df1)
+        col9.dataframe(df1.fillna(""))
         col9.write('---')
         title = f"<h1 style='{style}'>Income Statement</h1>"
         col10.write(title, unsafe_allow_html=True)
         df3 = df3.loc[:, df3.columns.notnull()]
-        col10.dataframe(df3)
+        col10.dataframe(df3.fillna(""))
         col10.write('---')
         title = f"<h1 style='{style}'>Cash Flow</h1>"
         col11.write(title, unsafe_allow_html=True)
-        col11.dataframe(df4)
+        col11.dataframe(df4.fillna(""))
         col10.write('---')
     if col8_2.button("Operating Performance"):
-        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
+        style = ("text-align:left; padding: 0px; font-family: corbel;, "
              "font-size: 150%")
         title = f"<h1 style='{style}'>Operating Metrics</h1>"
         col9.write(title, unsafe_allow_html=True)
-        col9.dataframe(df2)
+        col9.dataframe(df2.fillna(""))
         col9.write('---')
 #   make_button_df(col7_1, "1st button", df1, df2, df col8_1, col8_2)
 #   make_button_df(col7_2, "2nd button", df3, df4, col8_1, col8_2)
