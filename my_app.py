@@ -121,7 +121,6 @@ def make_button_df(col, text, df1, df2, col1, col2):
     if col.button(text):
         col1.dataframe(df1)
         col2.dataframe(df2)
-
         
         
 def make_pie(size, colors, column):
