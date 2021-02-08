@@ -175,7 +175,7 @@ st.markdown(
     )
 
 companies = ['Select a Company', 'Airbnb', 'Airbnb'] # companies list
-col0_1, col0_2, col0_3 =st.beta_columns((1, 1, 1))
+col0_1, col0_2, col0_3 =st.beta_columns((0.7, 1, 0.7))
 company = col0_2.selectbox('Select a Company to Analyze', companies)
 col0_2.write('---')
 # current directory
