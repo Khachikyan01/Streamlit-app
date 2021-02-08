@@ -191,7 +191,7 @@ if company and company != "Select a Company":
     col1_T, col1_1, col1_2 = st.beta_columns((1, 2.7, 30))
     imagePath = os.path.join(dataPath, "logo_airbnb.jpg")
     image = Image.open(imagePath)
-    col1_1.image(image, width = 50)
+    col1_1.image(image, width = 70)
     col1_2.write(title, unsafe_allow_html=True)
 # 2nd line
     col2_1, col2_2, col2_3, col2_4 = st.beta_columns((1, 1, 1, 1))
