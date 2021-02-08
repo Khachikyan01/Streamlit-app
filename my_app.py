@@ -153,11 +153,6 @@ def make_rect(text, value, col):
     plt1.text(0.30, 0.39, value , fontsize=30, **efont)
     col.pyplot(plt1)
 
-
-currentDirectory = os.path.abspath(os.getcwd())
-dataPath = os.path.join(currentDirectory, "MainDataNotFull.csv")
-df1 = pd.read_csv(dataPath)
-
 # page config
 st.set_page_config(page_title="ESG AI", layout='wide', initial_sidebar_state="expanded")
 style = ("text-align:center; padding: 0px; font-family: arial black;, "
@@ -181,17 +176,22 @@ st.markdown(
 
 companies = ['Select a Company', 'Airbnb', 'Airbnb'] # companies list
 company = st.selectbox('Select a Company to Analyze', companies)
+
+# current directory
+dataPath = os.path.join(".", "airbnb")
+
 if company and company != "Select a Company":
     
     
 # 1st line
-    style = ("text-align:left; padding: 15px; font-family: arial black;, "
+    style = ("text-align:left; padding: 0px; font-family: arial black;, "
          "font-size: 300%")
     
     title = f"<h1 style='{style}'>Airbnb</h1>"
-    col1_T, col1_1, col1_2 = st.beta_columns((1, 3, 30))
-    image = Image.open(r'C:\Users\khach\logo_airbnb.jpg')
-    col1_1.image(image, width = 100)
+    col1_T, col1_1, col1_2 = st.beta_columns((1, 2.7, 30))
+    imagePath = os.path.join(dataPath, "logo_airbnb.jpg")
+    image = Image.open(imagePath)
+    col1_1.image(image, width = 50)
     col1_2.write(title, unsafe_allow_html=True)
 # 2nd line
     col2_1, col2_2, col2_3, col2_4 = st.beta_columns((1, 1, 1, 1))
@@ -305,19 +305,47 @@ if company and company != "Select a Company":
 # 7th line
     col_T, col7_1, col7_2 = st.beta_columns((0.41, 0.1, 0.1))
 # 8th line
-    col8_1, col8_2 = st.beta_columns((3, 3))
+    col_T, col8 = st.beta_columns((1.3, 3))
+# 9th line
+    col_T, col9 = st.beta_columns((1.3, 3))
+# 10th line
+    col_T, col10 = st.beta_columns((1.3, 3))
     
-    dataPath1 = os.path.join(currentDirectory, "Financials--Balance Sheet.csv")
-    dataPath2 = os.path.join(currentDirectory, "Operating Performance Metrics.csv")
-    dataPath3 = os.path.join(currentDirectory, "Financials--Income Statement.csv")
-    dataPath4 = os.path.join(currentDirectory, "Financials--Cash Flow.csv")
+    dataPath1 = os.path.join(dataPath, "Financials--Balance Sheet.csv")
+    dataPath2 = os.path.join(dataPath, "Operating Performance Metrics.csv")
+    dataPath3 = os.path.join(dataPath, "Financials--Income Statement.csv")
+    dataPath4 = os.path.join(dataPath, "Financials--Cash Flow.csv")
     df1 = pd.read_csv(dataPath1)
     df2 = pd.read_csv(dataPath2)
     df3 = pd.read_csv(dataPath3)
     df4 = pd.read_csv(dataPath4)
-    make_button_df(col7_1, "1st button", df1, df2, col8_1, col8_2)
-    make_button_df(col7_2, "2nd button", df3, df4, col8_1, col8_2)
-
+    if col7_1.button("Financial Performance"):
+        style = ("text-align:left; padding: 0px; font-family: corbel;, "
+             "font-size: 150%")
+    
+        title = f"<h1 style='{style}'>Balance Sheet</h1>"
+        col8.write(title, unsafe_allow_html=True)
+        col8.dataframe(df1)
+        col8.write('---')
+        title = f"<h1 style='{style}'>Income Statement</h1>"
+        col9.write(title, unsafe_allow_html=True)
+        df3 = df3.loc[:, df3.columns.notnull()]
+        col9.dataframe(df3)
+        col9.write('---')
+        title = f"<h1 style='{style}'>Cash Flow</h1>"
+        col10.write(title, unsafe_allow_html=True)
+        col10.dataframe(df4)
+        col10.write('---')
+    if col7_2.button("Operating Performance"):
+        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
+             "font-size: 150%")
+        title = f"<h1 style='{style}'>Operating Metrics</h1>"
+        col8.write(title, unsafe_allow_html=True)
+        col8.dataframe(df2)
+        col8.write('---')
+#   make_button_df(col7_1, "1st button", df1, df2, df col8_1, col8_2)
+#   make_button_df(col7_2, "2nd button", df3, df4, col8_1, col8_2)
+    
 # th line
 #   col1, col2= st.beta_columns((1, 4))
 #   metric_options = ['SASB dimensions', 'SASB Social Capital',
