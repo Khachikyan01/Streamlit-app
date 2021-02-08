@@ -295,10 +295,10 @@ if company and company != "Select a Company":
     col7_T, col7_1 = st.beta_columns((1, 5))
 # 7th line
     text1 = """
-     123
+     Put some text here to see result
     """ # text under 1st plot
     text2 = """
-     345
+     Put some text here to see result
     """ # text under 2nd plot
     imagePath = os.path.join(dataPath, "screen_airbnb.png")
     image1 = Image.open(imagePath) 
