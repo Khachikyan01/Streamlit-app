@@ -148,14 +148,12 @@ def make_pie(size, colors, column):
 def make_rect(text, value, col):
     hfont = {'fontname':'Comic Sans MS'}
     efont = {'fontname':'Corbel'}
-    value1 = '111.1 mln $'
-    value2 = '22.2 mln $'
     plt1 = plt.figure()
     currentAxis = plt1.gca()
     currentAxis.set_axis_off()
     currentAxis.add_patch(Rectangle((0.2, 0.3), 0.7, 0.4, fill=None, alpha=10))
-    plt1.text(0.30, 0.55, text, fontsize=20, **hfont)
-    plt1.text(0.30, 0.39, value , fontsize=30, **efont)
+    plt1.text(0.3, 0.39, text, fontsize=15, **hfont)
+    plt1.text(0.3, 0.51, value1 , fontsize=40, **hfont)
     col.pyplot(plt1)
 
 # page config
@@ -201,15 +199,19 @@ if company and company != "Select a Company":
     col1_2.write(title, unsafe_allow_html=True)
 # 2nd line
     col2_1, col2_2, col2_3, col2_4 = st.beta_columns((1, 1, 1, 1))
-    text = 'Some text'
-    value = '111.1 mln $'
+    text1 = 'Stock price, as of 08-Feb-2021' 
+    text2 = 'ABNB Mkt cap, 03-Feb-2021'
+    text3 = 'Airbnb Revenue Q3, 2020'
+    value1 = '$195.47'
+    value2 = '$111 B'
+    value3 = '$1.3 B'
     percent = 30
     c1 = (232, 232, 232)
     c2 = (139, 0, 139)
     make_pie(percent,[c1,c2], col2_1)
-    make_rect(text, value, col2_2)
-    make_rect(text, value, col2_3)
-    make_rect(text, value, col2_4)
+    make_rect(text1, value1, col2_2)
+    make_rect(text2, value2, col2_3)
+    make_rect(text3, value3, col2_4)
 # 3rd line
     col3_1, col3_2 =st.beta_columns((1, 1))
     categories = [ 'Environment',
