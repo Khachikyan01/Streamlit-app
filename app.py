@@ -334,10 +334,10 @@ if company and company != "Select a Company":
 # 11th line
     col_T, col11 = st.beta_columns((1.3, 3))
     
-    dataPath1 = os.path.join(currentDirectory, "Financials--Balance Sheet.csv")
-    dataPath2 = os.path.join(currentDirectory, "Operating Performance Metrics.csv")
-    dataPath3 = os.path.join(currentDirectory, "Financials--Income Statement.csv")
-    dataPath4 = os.path.join(currentDirectory, "Financials--Cash Flow.csv")
+    dataPath1 = os.path.join(dataPath, "Financials--Balance Sheet.csv")
+    dataPath2 = os.path.join(dataPath, "Operating Performance Metrics.csv")
+    dataPath3 = os.path.join(dataPath, "Financials--Income Statement.csv")
+    dataPath4 = os.path.join(dataPath, "Financials--Cash Flow.csv")
     df1 = pd.read_csv(dataPath1)
     df2 = pd.read_csv(dataPath2)
     df3 = pd.read_csv(dataPath3)
