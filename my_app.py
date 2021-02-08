@@ -304,7 +304,7 @@ if company and company != "Select a Company":
     st.write('---')
 
 # 7th line
-    col_T, col7_1, col7_2 = st.beta_columns((0.41, 0.1, 0.1))
+    col_T, col7_1, col7_2 = st.beta_columns((0.39, 0.1, 0.1))
 # 8th line
     col_T, col8 = st.beta_columns((1.3, 3))
 # 9th line
