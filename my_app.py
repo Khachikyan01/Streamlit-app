@@ -175,10 +175,11 @@ st.markdown(
     )
 
 companies = ['Select a Company', 'Airbnb', 'Airbnb'] # companies list
-company = st.selectbox('Select a Company to Analyze', companies)
-
+col0_1, col0_2, col0_3 =st.beta_columns((1, 1, 1))
+company = col0_2.selectbox('Select a Company to Analyze', companies)
+col0_2.write('---')
 # current directory
-dataPath = os.path.join(".", "airbnb")
+dataPath = os.path.join(".", "airbnb") # change while using companies list
 
 if company and company != "Select a Company":
     
