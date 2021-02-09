@@ -646,11 +646,11 @@ if company and company != "Select a Company":
 # 8th line
     col_T, col8_1, col8_2 = st.beta_columns((0.27, 0.31, 0.3))
 # 9th line
-    col_T, col9 = st.beta_columns((1.3, 3))
+    col_T, col9 = st.beta_columns((1.1, 3))
 # 10th line
-    col_T, col10 = st.beta_columns((1.3, 3))
+    col_T, col10 = st.beta_columns((1.2, 3))
 # 11th line
-    col_T, col11 = st.beta_columns((1.3, 3))
+    col_T, col11 = st.beta_columns((1, 3))
     
     dataPath1 = os.path.join(dataPath, "Financials--Balance Sheet.csv")
     dataPath2 = os.path.join(dataPath, "Operating Performance Metrics.csv")
