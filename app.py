@@ -10,6 +10,7 @@ from PIL import Image
 import scipy.interpolate
 from datetime import datetime 
 import numpy  as np
+import scipy as sp
 
 # functions
 def make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY, titleX, titleY, textPos, yRange, col):
