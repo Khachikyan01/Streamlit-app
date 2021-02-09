@@ -216,7 +216,7 @@ if company and company != "Select a Company":
     make_rect(text2, value2, col2_3)
     make_rect(text3, value3, col2_4)
 # 3rd line
-    col3_T, col3_1, col3_2 =st.beta_columns((0.3, 3, 3))
+    col3_T, col3_1, col3_2 =st.beta_columns((0.1, 3, 3))
     
     # 1st plot
     
