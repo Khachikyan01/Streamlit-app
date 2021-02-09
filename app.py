@@ -100,7 +100,7 @@ def make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY
     col.plotly_chart(fig)
     
 
-def make_button(col, text, col1, col2, col3, text1, text2, image):
+def make_button(col, text, col1, col2, col3, text1, text2):
     style = ("text-align:left; padding: 0px; font-family: arial black;, "
          "font-size: 300%")
     if col.button(text):
@@ -125,7 +125,6 @@ def make_button(col, text, col1, col2, col3, text1, text2, image):
         col1.markdown("---")
         col2.markdown(text2)# text under 2nd plot
         col2.markdown("---")
-        col3.image(image, width = 900)
 
 def make_button_df(col, text, df1, df2, col1, col2):
     if col.button(text):
@@ -629,21 +628,11 @@ if company and company != "Select a Company":
     text2 = """
      Put some text here to see result
     """ # text under 2nd plot
-    imagePath = os.path.join(dataPath, "screen_airbnb.png")
-    image1 = Image.open(imagePath) 
-    make_button(col5_1, "SASB Env", col6_1, col6_2, col7_1, text1, text2, image1)
-    imagePath = os.path.join(dataPath, "screen_airbnb.png")
-    image2 = Image.open(imagePath)
-    make_button(col5_2, "SASB SOC", col6_1, col6_2, col7_1, text1, text2, image2)
-    imagePath = os.path.join(dataPath, "screen_airbnb.png")
-    image3 = Image.open(imagePath)
-    make_button(col5_3, "SASB HUM", col6_1, col6_2, col7_1, text1, text2, image3)
-    imagePath = os.path.join(dataPath, "screen_airbnb.png")
-    image4 = Image.open(imagePath)
-    make_button(col5_4, "SASB BUS", col6_1, col6_2, col7_1, text1, text2, image4)
-    imagePath = os.path.join(dataPath, "screen_airbnb.png")
-    image5 = Image.open(imagePath)
-    make_button(col5_5, "SASB LEAD", col6_1, col6_2, col7_1, text1, text2, image5)
+    make_button(col5_1, "SASB Env", col6_1, col6_2, col7_1, text1, text2)
+    make_button(col5_2, "SASB SOC", col6_1, col6_2, col7_1, text1, text2)
+    make_button(col5_3, "SASB HUM", col6_1, col6_2, col7_1, text1, text2
+    make_button(col5_4, "SASB BUS", col6_1, col6_2, col7_1, text1, text2)
+    make_button(col5_5, "SASB LEAD", col6_1, col6_2, col7_1, text1, text2)
     
 # text line
     st.write('---')
