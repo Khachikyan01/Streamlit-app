@@ -572,23 +572,23 @@ if company and company != "Select a Company":
     
     title = f"<h1 style='{style}'>Environment</h1>"
     col4_1.write(title, unsafe_allow_html=True)
-    make_pie(52,[c1,c2], col4_1)
+    make_pie(50,[c1,c2], col4_1)
     
     title = f"<h1 style='{style}'>Social Capital</h1>"
     col4_2.write(title, unsafe_allow_html=True)
-    make_pie(60,[c1,c2], col4_2)
+    make_pie(50,[c1,c2], col4_2)
 
     title = f"<h1 style='{style}'>Human Capital</h1>"
     col4_3.write(title, unsafe_allow_html=True)
-    make_pie(14,[c1,c2], col4_3)
+    make_pie(47,[c1,c2], col4_3)
     
     title = f"<h1 style='{style}'>Business Model & Innovation</h1>"
     col4_4.write(title, unsafe_allow_html=True)
-    make_pie(73,[c1,c2], col4_4)
+    make_pie(48,[c1,c2], col4_4)
     
     title = f"<h1 style='{style}'>Leadership & Governance</h1>"
     col4_5.write(title, unsafe_allow_html=True)
-    make_pie(97,[c1,c2], col4_5)
+    make_pie(54,[c1,c2], col4_5)
 
 # text line
     style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
