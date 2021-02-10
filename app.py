@@ -628,12 +628,457 @@ if company and company != "Select a Company":
     text2 = """
      Put some text here to see result
     """ # text under 2nd plot
-    make_button(col5_1, "SASB Env", col6_1, col6_2, col7_1, text1, text2)
-    make_button(col5_2, "SASB SOC", col6_1, col6_2, col7_1, text1, text2)
-    make_button(col5_3, "SASB HUM", col6_1, col6_2, col7_1, text1, text2)
-    make_button(col5_4, "SASB BUS", col6_1, col6_2, col7_1, text1, text2)
-    make_button(col5_5, "SASB LEAD", col6_1, col6_2, col7_1, text1, text2)
     
+# linear graph part
+
+    company = 'Airbnb'
+        df = pd.read_csv(f'Companies/{company}/events.csv',parse_dates=['Date'],index_col='Date')
+
+        env_labels = [25,21,24,19,20,13,23]
+        social_labels = [10,2,6,1,22,16]
+        hum_labels = [11,8,9]
+        gov_labels = [18,5,12,4,0,7,17]
+        bus_labels =  [15,14,3]
+
+        envoirmental_df = df.loc[(df['N_label']==25)|
+                                 (df['N_label']==21)|
+                                 (df['N_label']==24)|
+                                 (df['N_label']==19)|
+                                 (df['N_label']==20)|
+                                 (df['N_label']==13)|
+                                 (df['N_label']==23)]
+
+
+        social_df = df.loc[(df['N_label']==10)|
+                                 (df['N_label']==2)|
+                                 (df['N_label']==6)|
+                                 (df['N_label']==1)|
+                                 (df['N_label']==22)|
+                                 (df['N_label']==16)]
+
+        human_capital_df = df.loc[(df['N_label']==11)|
+                                 (df['N_label']==8)|
+                                 (df['N_label']==9)]
+
+
+        gov_df = df.loc[(df['N_label']==18)|
+                                 (df['N_label']==5)|
+                                 (df['N_label']==12)|
+                                 (df['N_label']==4)|
+                                 (df['N_label']==0)|
+                                 (df['N_label']==7)|
+                                 (df['N_label']==17)]
+
+        business_df = df.loc[(df['N_label']==15)|
+                                 (df['N_label']==14)|
+                                 (df['N_label']==3)]
+
+        dates = df.resample('M').mean().index
+
+        env_month_avg = envoirmental_df.resample('M').mean()
+        env_month_avg.drop('N_label',axis=1,inplace=True)
+
+        for date in dates:
+            if date not in env_month_avg.index:
+                env_month_avg.loc[date] = np.nan
+
+        env_month_avg.sort_index(inplace=True)
+
+        env_month_avg.fillna(method='ffill',inplace=True)
+        env_month_avg.fillna(method='backfill',inplace=True)
+
+
+        social_month_avg = social_df.resample('M').mean()
+        social_month_avg.drop('N_label',axis=1,inplace=True)
+
+        for date in dates:
+            if date not in social_month_avg.index:
+                social_month_avg.loc[date] = np.nan
+
+        social_month_avg.sort_index(inplace=True)
+        social_month_avg.fillna(method='ffill',inplace=True)
+        social_month_avg.fillna(method='backfill',inplace=True)
+
+
+
+        human_month_avg = human_capital_df.resample('M').mean()
+        human_month_avg.drop('N_label',axis=1,inplace=True)
+
+        for date in dates:
+            if date not in human_month_avg.index:
+                human_month_avg.loc[date] = np.nan
+
+        human_month_avg.sort_index(inplace=True)
+        human_month_avg.fillna(method='ffill',inplace=True)
+        human_month_avg.fillna(method='backfill',inplace=True)
+
+
+
+        gov_month_avg = gov_df.resample('M').mean()
+        gov_month_avg.drop('N_label',axis=1,inplace=True)
+
+
+        for date in dates:
+            if date not in gov_month_avg.index:
+                gov_month_avg.loc[date] = np.nan
+
+        gov_month_avg.sort_index(inplace=True)
+        gov_month_avg.fillna(method='ffill',inplace=True)
+        gov_month_avg.fillna(method='backfill',inplace=True)
+
+
+
+        bus_month_avg = business_df.resample('M').mean()
+        bus_month_avg.drop('N_label',axis=1,inplace=True)
+
+        for date in dates:
+            if date not in bus_month_avg.index:
+                bus_month_avg.loc[date] = np.nan
+
+        bus_month_avg.sort_index(inplace=True)
+        bus_month_avg.fillna(method='ffill',inplace=True)
+        bus_month_avg.fillna(method='backfill',inplace=True)
+
+
+        env_month_avg = env_month_avg.ewm(span=10).mean()
+        social_month_avg = social_month_avg.ewm(span=10).mean()
+        human_month_avg = human_month_avg.ewm(span=10).mean()
+        gov_month_avg = gov_month_avg.ewm(span=10).mean()
+        bus_month_avg = bus_month_avg.ewm(span=10).mean()
+
+        def plot_month_averages(month_avgs, title, col):
+            x = [str(x).split('T')[0] for x in month_avgs.index.values]
+            x[-1] = '2021-01-22'
+            y1 = month_avgs.values.reshape(-1)
+            y1 = np.round(y1,2) 
+
+            fig = go.Figure()
+
+            fig.add_trace(go.Scatter(x=x, y=y1, name="Intelligence Score", line = dict(color='#DDA0DD', width = 3), line_shape='spline', mode="lines"),
+            )
+
+            fig.add_trace(go.Scatter(x=x, y=[50]*len(x), name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+            )
+
+            fig.update_layout(
+                title_text=title
+            )
+
+            fig.update_layout(legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.3,
+                xanchor="center",
+                x=0.5
+                )
+            )
+
+            fig.update_layout(
+                font=dict(
+                    family="Corbel",
+                    size=14,
+                    color="#000000"
+                )
+            )
+
+            fig.update_layout(
+                title={
+                    'y':0.9,
+                    'x':0.04,
+                    'xanchor': 'left',
+                    'yanchor': 'top'}
+            )
+
+            fig.update_xaxes(
+                    tickangle = -30,
+                    title_font = {"size": 14},
+                    title_standoff = 100,
+                    tickmode= "auto"
+            )
+
+
+            fig.update_layout(plot_bgcolor="#FFFFFF")
+
+            col.plotly_chart(fig)
+       
+# bar chart part 
+
+
+    company = 'Airbnb'
+    df = pd.read_csv(f'Companies/{company}/events.csv')
+    df.head()
+
+    envoirmental_df = df.loc[(df['N_label']==25)|
+                             (df['N_label']==21)|
+                             (df['N_label']==24)|
+                             (df['N_label']==19)|
+                             (df['N_label']==20)|
+                             (df['N_label']==13)|
+                             (df['N_label']==23)]
+
+
+    social_df = df.loc[(df['N_label']==10)|
+                             (df['N_label']==2)|
+                             (df['N_label']==6)|
+                             (df['N_label']==1)|
+                             (df['N_label']==22)|
+                             (df['N_label']==16)]
+
+    human_capital_df = df.loc[(df['N_label']==11)|
+                             (df['N_label']==8)|
+                             (df['N_label']==9)]
+
+
+    gov_df = df.loc[(df['N_label']==18)|
+                            (df['N_label']==5)|
+                             (df['N_label']==12)|
+                             (df['N_label']==4)|
+                             (df['N_label']==0)|
+                             (df['N_label']==7)|
+                             (df['N_label']==17)]
+
+    business_df = df.loc[(df['N_label']==15)|
+                             (df['N_label']==14)|
+                             (df['N_label']==3)]
+
+    env_avg = np.mean(envoirmental_df['AvgTone'].values)
+    hum_avg = np.mean(human_capital_df['AvgTone'].values)
+    social_avg = np.mean(human_capital_df['AvgTone'].values)
+    gov_avg = np.mean(gov_df['AvgTone'].values)
+    bus_avg = np.mean(business_df['AvgTone'].values)
+
+    count_df = pd.read_csv(f'Companies/{company}/counts.csv').T
+    count_df.columns = count_df.iloc[1]
+    count_df
+
+    env_count = (count_df.loc['Count',25] + count_df.loc['Count',21] +count_df.loc['Count',24]+count_df.loc['Count',19]+count_df.loc['Count',20]+count_df.loc['Count',13]+count_df.loc['Count',23])
+    social_count = (count_df.loc['Count',10] + count_df.loc['Count',2] +count_df.loc['Count',6]+count_df.loc['Count',1]+count_df.loc['Count',22]+count_df.loc['Count',16])
+    hum_count = (count_df.loc['Count',11] + count_df.loc['Count',8] +count_df.loc['Count',9])
+    gov_count = (count_df.loc['Count',18] + count_df.loc['Count',12] +count_df.loc['Count',4]+count_df.loc['Count',0]+count_df.loc['Count',7]+count_df.loc['Count',17]+count_df.loc['Count',5])
+    bus_count = (count_df.loc['Count',15] + count_df.loc['Count',14] +count_df.loc['Count',3])
+
+
+    avg_df = pd.read_csv(f'Companies/{company}/avg_score.csv').T
+    avg_df.columns = avg_df.iloc[0]
+    avg_df.index = ['N_lable','Avg_score']
+    avg_df.drop('N_lable',axis=0, inplace=True)
+    for i in range(26):
+        if i not in avg_df.columns:
+            avg_df[i] = [0]
+    avg_df
+
+    env_avg = (avg_df.loc['Avg_score',25.] + avg_df.loc['Avg_score',21] +avg_df.loc['Avg_score',24]+avg_df.loc['Avg_score',19]+avg_df.loc['Avg_score',20]+avg_df.loc['Avg_score',13]+avg_df.loc['Avg_score',23])/7
+    social_avg = (avg_df.loc['Avg_score',10] + avg_df.loc['Avg_score',2] +avg_df.loc['Avg_score',6]+avg_df.loc['Avg_score',1]+avg_df.loc['Avg_score',22]+avg_df.loc['Avg_score',16])/6
+    hum_avg = (avg_df.loc['Avg_score',11] + avg_df.loc['Avg_score',8] +avg_df.loc['Avg_score',9])/3
+    gov_avg = (avg_df.loc['Avg_score',18] + avg_df.loc['Avg_score',12] +avg_df.loc['Avg_score',4]+avg_df.loc['Avg_score',0]+avg_df.loc['Avg_score',7]+avg_df.loc['Avg_score',17]+avg_df.loc['Avg_score',5])/7
+    bus_avg = (avg_df.loc['Avg_score',15] + avg_df.loc['Avg_score',14] +avg_df.loc['Avg_score',3])/3
+
+
+    def plot_volumes(x, line_y, bar_y, title, col):
+        bar_y = np.array([x for x in bar_y])/100
+
+        # Create figure with secondary y-axis
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+        line_text = [f'{round(x,2)}' for x in line_y]
+        # Add traces
+        fig.add_trace(go.Scatter(x=x, y=line_y, name="Intelligence Score", line_shape='spline',mode="lines+markers+text",              
+            text=line_text, # Bold version <b> </b>
+            textposition="top center",
+            marker_color='#DDA0DD',                
+            textfont=dict(
+                family="Corbel",
+                size=14,
+                color="#000000 "
+            )),
+            secondary_y=True,
+        )
+
+        fig.add_trace(go.Scatter(x=x, y=[50]*len(x) , name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+            secondary_y=True,
+        )
+
+        bar_text = [f'{round(x*100) if round(x*100)!=0 else round(x*100,2)}%' for x in bar_y]
+
+        fig.add_trace(
+            go.Bar(x=categories, y=bar_y, name="Volume / Contribution of<br>each SASB dimension",text=bar_text,
+                textposition='auto',
+                marker_color='#773877',
+                  ),
+            secondary_y=False, 
+        )
+        # Add figure title
+        fig.update_layout(
+            title_text=title,
+        )
+
+        fig.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.44,
+            xanchor="center",
+            x=0.5
+        ))
+
+        fig.update_layout(
+            yaxis = dict(
+                tickformat = ',.0%',
+                range = [0,0.6]        
+            )
+        )
+        fig.update_layout(
+            font=dict(
+                family="Corbel",
+                size=14,
+                color="#000000"
+            )
+        )
+        fig.update_layout(plot_bgcolor="#FFFFFF")
+
+
+
+        fig.update_layout(
+            title={
+                'xanchor': 'left',
+                'yanchor': 'top'})
+
+        fig.update_xaxes(
+                tickangle = 0,
+                title_font = {"size": 14},
+                title_standoff = 100,
+                tickmode= "auto")
+
+        fig.update_layout(
+            autosize=False,
+            width=700,
+            height=550,
+            margin=dict(
+            l=50,
+            r=50,
+            b=100,
+            t=100,
+            pad=4
+            ),
+        )
+
+        col.plotly_chart(fig)
+        
+       
+    if col5_1.button("SASB Env"):
+        
+        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+         "font-size: 100%")
+        title = f"<h1 style='{style}'>No Data to Display</h1>"
+        col6_1.write(title, unsafe_allow_html=True)
+        
+    if col5_2.button("SASB SOC"):
+        social_labels_score = social_df.groupby(social_df['Label']).mean()
+        social_labels = social_labels_score.index.unique()
+        social_labels_count = {}
+        x = 0
+        for label in social_labels:
+            rows = social_df.loc[social_df['Label']==label]
+            social_labels_count[label] = len(rows)/len(social_df)*100
+
+        categories = ['Access &<br>Affordability',
+            'Customer <br>Privacy',
+            'Customer <br>Welfare',
+            'Data <br>Security',
+            'Human <br>Rights &<br>Community <br>Relations',
+            'Selling <br>Practices &<br>Product <br>Labeling']
+    
+        y = social_labels_score['AvgTone'].values
+        y2 = social_labels_count.values()
+        title = "Social Capital SASB Intelligence Score"
+
+       
+
+        plot_volumes(categories, y, y2, title, col6_1)
+
+        
+        title = 'Socail Capital Intelligence Score'
+        plot_month_averages(social_month_avg,title, col6_2)
+    if col5_3.button("SASB HUM"):
+        human_labels_score = human_capital_df.groupby(human_capital_df['Label']).mean()
+
+        human_labels = human_labels_score.index.unique()
+        human_labels_count = {}
+
+
+        x = 0
+        for label in human_labels:
+            rows = human_capital_df.loc[human_capital_df['Label']==label]
+            human_labels_count[label] = len(rows)/len(human_capital_df)*100
+
+        categories = ['Employee Engagement<br>Inclusion & Diversity',
+                    'Employee Health & Safety',
+                    'Labor Practices']
+        y = human_labels_score['AvgTone'].values
+        y2 = human_labels_count.values()
+        title = "Human Capital SASB Intelligence Score"
+        plot_volumes(categories,y,y2,title, col6_1)
+        
+        title = 'Human Capital Intelligence Score'
+        plot_month_averages(human_month_avg,title, col6_2)
+
+    if col5_4.button("SASB BUS"):
+    
+        bus_labels_score = business_df.groupby(business_df['Label']).mean()
+
+        bus_labels = bus_labels_score.index.unique()
+        bus_labels_count = {}
+        x = 0
+        for label in bus_labels:
+            rows = business_df.loc[business_df['Label']==label]
+            bus_labels_count[label] = len(rows)/len(business_df)*100
+
+
+        categories = [ 'Business Model<br>Resilience',
+                      'Product Design &<br>Lifecycle Management',
+                      'Product Quality &<br>Safety',
+                     ]
+
+
+
+        y = bus_labels_score['AvgTone'].values
+        y2 = bus_labels_count.values()
+        title = "Business Model & Innovation SASB Intelligence Score"
+
+
+        plot_volumes(categories,y,y2,title, col6_1)
+        
+        title = 'Business Model & Innovation Intelligence Score'
+        plot_month_averages(bus_month_avg,title, col6_2)
+    if col5_5.button("SASB LEAD"):
+        gov_labels_score = gov_df.groupby(gov_df['Label']).mean()
+
+        gov_labels = gov_labels_score.index.unique()
+        gov_labels_count = {}
+        x = 0
+        for label in gov_labels:
+            rows = gov_df.loc[gov_df['Label']==label]
+            gov_labels_count[label] = len(rows)/len(gov_df)*100
+
+        categories = ['Business<br>Ethics',
+                      'Competitive<br>Behavior',
+                      'Critical<br>Incident Risk<br>Management',
+                      'Director<br>Removal',
+                      'Management<br>Of Legal &<br>Regulatory<br>Framework',
+                      'Supply<br>Chain<br>Manage<br>ment',
+                      'Systemic<br>Risk<br>Manage<br>ment'
+                     ]
+
+        y = gov_labels_score['AvgTone'].values
+        y2 = gov_labels_count.values()
+        title = "Leadership & Governance SASB Intelligence Score"
+        plot_volumes(categories,y,y2,col6_1)
+        
+        title = 'Leadership & Governance Intelligence Score'
+        plot_month_averages(gov_month_avg,title,col6_2)
+        
+        
+        
+        
 # text line
     st.write('---')
     style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
