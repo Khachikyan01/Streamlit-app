@@ -970,9 +970,8 @@ if company and company != "Select a Company":
          "font-size: 100%")
         title = f"<h1 style='{style}'>No Data to Display</h1>"
         col6_1.write(title, unsafe_allow_html=True)
-        col6_2.write("""
-        
-        """)
+        col6_2.write(""" """)
+        col6_2.write(""" """)
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
         text1 = """
@@ -1112,7 +1111,6 @@ if company and company != "Select a Company":
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         col6_2.markdown("---")
-        col6_2.write(""" """)
         col6_2.write(""" """)
         col6_2.write(""" """)
         title= f"<h1 style='{style}'>'{text2}' </h1>"
