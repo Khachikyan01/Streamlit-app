@@ -1114,6 +1114,7 @@ if company and company != "Select a Company":
         col6_2.markdown("---")
         col6_2.write(""" """)
         col6_2.write(""" """)
+        col6_2.write(""" """)
         title= f"<h1 style='{style}'>'{text2}' </h1>"
         col6_2.write(title, unsafe_allow_html=True)
         
