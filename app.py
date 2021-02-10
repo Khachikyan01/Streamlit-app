@@ -849,7 +849,7 @@ if company and company != "Select a Company":
 
     count_df = pd.read_csv(f'Companies/{company}/counts.csv').T
     count_df.columns = count_df.iloc[1]
-    count_df
+    
 
     env_count = (count_df.loc['Count',25] + count_df.loc['Count',21] +count_df.loc['Count',24]+count_df.loc['Count',19]+count_df.loc['Count',20]+count_df.loc['Count',13]+count_df.loc['Count',23])
     social_count = (count_df.loc['Count',10] + count_df.loc['Count',2] +count_df.loc['Count',6]+count_df.loc['Count',1]+count_df.loc['Count',22]+count_df.loc['Count',16])
@@ -865,7 +865,7 @@ if company and company != "Select a Company":
     for i in range(26):
         if i not in avg_df.columns:
             avg_df[i] = [0]
-    avg_df
+    
 
     env_avg = (avg_df.loc['Avg_score',25.] + avg_df.loc['Avg_score',21] +avg_df.loc['Avg_score',24]+avg_df.loc['Avg_score',19]+avg_df.loc['Avg_score',20]+avg_df.loc['Avg_score',13]+avg_df.loc['Avg_score',23])/7
     social_avg = (avg_df.loc['Avg_score',10] + avg_df.loc['Avg_score',2] +avg_df.loc['Avg_score',6]+avg_df.loc['Avg_score',1]+avg_df.loc['Avg_score',22]+avg_df.loc['Avg_score',16])/6
@@ -1049,6 +1049,8 @@ if company and company != "Select a Company":
         
         title = 'Business Model & Innovation Intelligence Score'
         plot_month_averages(bus_month_avg,title, col6_2)
+        
+        
     if col5_5.button("SASB LEAD"):
         gov_labels_score = gov_df.groupby(gov_df['Label']).mean()
 
@@ -1071,7 +1073,7 @@ if company and company != "Select a Company":
         y = gov_labels_score['AvgTone'].values
         y2 = gov_labels_count.values()
         title = "Leadership & Governance SASB Intelligence Score"
-        plot_volumes(categories,y,y2,col6_1)
+        plot_volumes(categories, y, y2, title, col6_1)
         
         title = 'Leadership & Governance Intelligence Score'
         plot_month_averages(gov_month_avg,title,col6_2)
