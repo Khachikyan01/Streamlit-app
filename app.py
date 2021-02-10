@@ -632,174 +632,174 @@ if company and company != "Select a Company":
 # linear graph part
 
     company = 'Airbnb'
-        df = pd.read_csv(f'Companies/{company}/events.csv',parse_dates=['Date'],index_col='Date')
+    df = pd.read_csv(f'Companies/{company}/events.csv',parse_dates=['Date'],index_col='Date')
 
-        env_labels = [25,21,24,19,20,13,23]
-        social_labels = [10,2,6,1,22,16]
-        hum_labels = [11,8,9]
-        gov_labels = [18,5,12,4,0,7,17]
-        bus_labels =  [15,14,3]
+    env_labels = [25,21,24,19,20,13,23]
+    social_labels = [10,2,6,1,22,16]
+    hum_labels = [11,8,9]
+    gov_labels = [18,5,12,4,0,7,17]
+    bus_labels =  [15,14,3]
 
-        envoirmental_df = df.loc[(df['N_label']==25)|
-                                 (df['N_label']==21)|
-                                 (df['N_label']==24)|
-                                 (df['N_label']==19)|
-                                 (df['N_label']==20)|
-                                 (df['N_label']==13)|
-                                 (df['N_label']==23)]
-
-
-        social_df = df.loc[(df['N_label']==10)|
-                                 (df['N_label']==2)|
-                                 (df['N_label']==6)|
-                                 (df['N_label']==1)|
-                                 (df['N_label']==22)|
-                                 (df['N_label']==16)]
-
-        human_capital_df = df.loc[(df['N_label']==11)|
-                                 (df['N_label']==8)|
-                                 (df['N_label']==9)]
+    envoirmental_df = df.loc[(df['N_label']==25)|
+                             (df['N_label']==21)|
+                             (df['N_label']==24)|
+                             (df['N_label']==19)|
+                             (df['N_label']==20)|
+                             (df['N_label']==13)|
+                             (df['N_label']==23)]
 
 
-        gov_df = df.loc[(df['N_label']==18)|
-                                 (df['N_label']==5)|
-                                 (df['N_label']==12)|
-                                 (df['N_label']==4)|
-                                 (df['N_label']==0)|
-                                 (df['N_label']==7)|
-                                 (df['N_label']==17)]
+    social_df = df.loc[(df['N_label']==10)|
+                             (df['N_label']==2)|
+                             (df['N_label']==6)|
+                             (df['N_label']==1)|
+                             (df['N_label']==22)|
+                             (df['N_label']==16)]
 
-        business_df = df.loc[(df['N_label']==15)|
-                                 (df['N_label']==14)|
-                                 (df['N_label']==3)]
-
-        dates = df.resample('M').mean().index
-
-        env_month_avg = envoirmental_df.resample('M').mean()
-        env_month_avg.drop('N_label',axis=1,inplace=True)
-
-        for date in dates:
-            if date not in env_month_avg.index:
-                env_month_avg.loc[date] = np.nan
-
-        env_month_avg.sort_index(inplace=True)
-
-        env_month_avg.fillna(method='ffill',inplace=True)
-        env_month_avg.fillna(method='backfill',inplace=True)
+    human_capital_df = df.loc[(df['N_label']==11)|
+                             (df['N_label']==8)|
+                             (df['N_label']==9)]
 
 
-        social_month_avg = social_df.resample('M').mean()
-        social_month_avg.drop('N_label',axis=1,inplace=True)
+    gov_df = df.loc[(df['N_label']==18)|
+                             (df['N_label']==5)|
+                             (df['N_label']==12)|
+                             (df['N_label']==4)|
+                             (df['N_label']==0)|
+                             (df['N_label']==7)|
+                             (df['N_label']==17)]
 
-        for date in dates:
-            if date not in social_month_avg.index:
-                social_month_avg.loc[date] = np.nan
+    business_df = df.loc[(df['N_label']==15)|
+                             (df['N_label']==14)|
+                             (df['N_label']==3)]
 
-        social_month_avg.sort_index(inplace=True)
-        social_month_avg.fillna(method='ffill',inplace=True)
-        social_month_avg.fillna(method='backfill',inplace=True)
+    dates = df.resample('M').mean().index
+
+    env_month_avg = envoirmental_df.resample('M').mean()
+    env_month_avg.drop('N_label',axis=1,inplace=True)
+
+    for date in dates:
+        if date not in env_month_avg.index:
+            env_month_avg.loc[date] = np.nan
+
+    env_month_avg.sort_index(inplace=True)
+
+    env_month_avg.fillna(method='ffill',inplace=True)
+    env_month_avg.fillna(method='backfill',inplace=True)
 
 
+    social_month_avg = social_df.resample('M').mean()
+    social_month_avg.drop('N_label',axis=1,inplace=True)
 
-        human_month_avg = human_capital_df.resample('M').mean()
-        human_month_avg.drop('N_label',axis=1,inplace=True)
+    for date in dates:
+        if date not in social_month_avg.index:
+            social_month_avg.loc[date] = np.nan
 
-        for date in dates:
-            if date not in human_month_avg.index:
-                human_month_avg.loc[date] = np.nan
-
-        human_month_avg.sort_index(inplace=True)
-        human_month_avg.fillna(method='ffill',inplace=True)
-        human_month_avg.fillna(method='backfill',inplace=True)
+    social_month_avg.sort_index(inplace=True)
+    social_month_avg.fillna(method='ffill',inplace=True)
+    social_month_avg.fillna(method='backfill',inplace=True)
 
 
 
-        gov_month_avg = gov_df.resample('M').mean()
-        gov_month_avg.drop('N_label',axis=1,inplace=True)
+    human_month_avg = human_capital_df.resample('M').mean()
+    human_month_avg.drop('N_label',axis=1,inplace=True)
+
+    for date in dates:
+        if date not in human_month_avg.index:
+            human_month_avg.loc[date] = np.nan
+
+    human_month_avg.sort_index(inplace=True)
+    human_month_avg.fillna(method='ffill',inplace=True)
+    human_month_avg.fillna(method='backfill',inplace=True)
 
 
-        for date in dates:
-            if date not in gov_month_avg.index:
-                gov_month_avg.loc[date] = np.nan
 
-        gov_month_avg.sort_index(inplace=True)
-        gov_month_avg.fillna(method='ffill',inplace=True)
-        gov_month_avg.fillna(method='backfill',inplace=True)
+    gov_month_avg = gov_df.resample('M').mean()
+    gov_month_avg.drop('N_label',axis=1,inplace=True)
 
 
+    for date in dates:
+        if date not in gov_month_avg.index:
+            gov_month_avg.loc[date] = np.nan
 
-        bus_month_avg = business_df.resample('M').mean()
-        bus_month_avg.drop('N_label',axis=1,inplace=True)
-
-        for date in dates:
-            if date not in bus_month_avg.index:
-                bus_month_avg.loc[date] = np.nan
-
-        bus_month_avg.sort_index(inplace=True)
-        bus_month_avg.fillna(method='ffill',inplace=True)
-        bus_month_avg.fillna(method='backfill',inplace=True)
+    gov_month_avg.sort_index(inplace=True)
+    gov_month_avg.fillna(method='ffill',inplace=True)
+    gov_month_avg.fillna(method='backfill',inplace=True)
 
 
-        env_month_avg = env_month_avg.ewm(span=10).mean()
-        social_month_avg = social_month_avg.ewm(span=10).mean()
-        human_month_avg = human_month_avg.ewm(span=10).mean()
-        gov_month_avg = gov_month_avg.ewm(span=10).mean()
-        bus_month_avg = bus_month_avg.ewm(span=10).mean()
 
-        def plot_month_averages(month_avgs, title, col):
-            x = [str(x).split('T')[0] for x in month_avgs.index.values]
-            x[-1] = '2021-01-22'
-            y1 = month_avgs.values.reshape(-1)
-            y1 = np.round(y1,2) 
+    bus_month_avg = business_df.resample('M').mean()
+    bus_month_avg.drop('N_label',axis=1,inplace=True)
 
-            fig = go.Figure()
+    for date in dates:
+        if date not in bus_month_avg.index:
+            bus_month_avg.loc[date] = np.nan
 
-            fig.add_trace(go.Scatter(x=x, y=y1, name="Intelligence Score", line = dict(color='#DDA0DD', width = 3), line_shape='spline', mode="lines"),
+    bus_month_avg.sort_index(inplace=True)
+    bus_month_avg.fillna(method='ffill',inplace=True)
+    bus_month_avg.fillna(method='backfill',inplace=True)
+
+
+    env_month_avg = env_month_avg.ewm(span=10).mean()
+    social_month_avg = social_month_avg.ewm(span=10).mean()
+    human_month_avg = human_month_avg.ewm(span=10).mean()
+    gov_month_avg = gov_month_avg.ewm(span=10).mean()
+    bus_month_avg = bus_month_avg.ewm(span=10).mean()
+
+    def plot_month_averages(month_avgs, title, col):
+        x = [str(x).split('T')[0] for x in month_avgs.index.values]
+        x[-1] = '2021-01-22'
+        y1 = month_avgs.values.reshape(-1)
+        y1 = np.round(y1,2) 
+
+        fig = go.Figure()
+
+        fig.add_trace(go.Scatter(x=x, y=y1, name="Intelligence Score", line = dict(color='#DDA0DD', width = 3), line_shape='spline', mode="lines"),
+        )
+
+        fig.add_trace(go.Scatter(x=x, y=[50]*len(x), name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+        )
+
+        fig.update_layout(
+            title_text=title
+        )
+
+        fig.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.3,
+            xanchor="center",
+            x=0.5
             )
+        )
 
-            fig.add_trace(go.Scatter(x=x, y=[50]*len(x), name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+        fig.update_layout(
+            font=dict(
+                family="Corbel",
+                size=14,
+                color="#000000"
             )
+        )
 
-            fig.update_layout(
-                title_text=title
-            )
+        fig.update_layout(
+            title={
+                'y':0.9,
+                'x':0.04,
+                'xanchor': 'left',
+                'yanchor': 'top'}
+        )
 
-            fig.update_layout(legend=dict(
-                orientation="h",
-                yanchor="bottom",
-                y=-0.3,
-                xanchor="center",
-                x=0.5
-                )
-            )
-
-            fig.update_layout(
-                font=dict(
-                    family="Corbel",
-                    size=14,
-                    color="#000000"
-                )
-            )
-
-            fig.update_layout(
-                title={
-                    'y':0.9,
-                    'x':0.04,
-                    'xanchor': 'left',
-                    'yanchor': 'top'}
-            )
-
-            fig.update_xaxes(
-                    tickangle = -30,
-                    title_font = {"size": 14},
-                    title_standoff = 100,
-                    tickmode= "auto"
-            )
+        fig.update_xaxes(
+                tickangle = -30,
+                title_font = {"size": 14},
+                title_standoff = 100,
+                tickmode= "auto"
+        )
 
 
-            fig.update_layout(plot_bgcolor="#FFFFFF")
+        fig.update_layout(plot_bgcolor="#FFFFFF")
 
-            col.plotly_chart(fig)
+        col.plotly_chart(fig)
        
 # bar chart part 
 
