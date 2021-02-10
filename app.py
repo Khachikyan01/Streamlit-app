@@ -972,7 +972,7 @@ if company and company != "Select a Company":
         col6_1.write(title, unsafe_allow_html=True)
         
         
-        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
         text1 = """
                 Hey1
@@ -982,6 +982,8 @@ if company and company != "Select a Company":
         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
+        
+        title= f"<h1 style='{style}'>'{text2}' </h1>"
         col6_2.write(title, unsafe_allow_html=True)
         
     if col5_2.button("SASB SOC"):
@@ -1012,7 +1014,7 @@ if company and company != "Select a Company":
         title = 'Socail Capital Intelligence Score'
         plot_month_averages(social_month_avg,title, col6_2)
         
-        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
         text1 = """
                 Hey1
@@ -1022,6 +1024,8 @@ if company and company != "Select a Company":
         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
+        
+        title= f"<h1 style='{style}'>'{text2}' </h1>"
         col6_2.write(title, unsafe_allow_html=True)
         
         
@@ -1048,7 +1052,7 @@ if company and company != "Select a Company":
         title = 'Human Capital Intelligence Score'
         plot_month_averages(human_month_avg,title, col6_2)
         
-        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
         text1 = """
                 Hey1
@@ -1058,6 +1062,8 @@ if company and company != "Select a Company":
         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
+        
+        title= f"<h1 style='{style}'>'{text2}' </h1>"
         col6_2.write(title, unsafe_allow_html=True)
         
         
@@ -1090,7 +1096,7 @@ if company and company != "Select a Company":
         title = 'Business Model & Innovation Intelligence Score'
         plot_month_averages(bus_month_avg,title, col6_2)
         
-        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
         text1 = """
                 Hey1
@@ -1100,6 +1106,8 @@ if company and company != "Select a Company":
         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
+        
+        title= f"<h1 style='{style}'>'{text2}' </h1>"
         col6_2.write(title, unsafe_allow_html=True)
         
         
@@ -1130,7 +1138,7 @@ if company and company != "Select a Company":
         title = 'Leadership & Governance Intelligence Score'
         plot_month_averages(gov_month_avg,title,col6_2)
         
-        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+        style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
         text1 = """
                 Hey1
@@ -1140,6 +1148,8 @@ if company and company != "Select a Company":
         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
+  
+        title= f"<h1 style='{style}'>'{text2}'</h1>"
         col6_2.write(title, unsafe_allow_html=True)
         
         
