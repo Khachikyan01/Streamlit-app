@@ -971,6 +971,19 @@ if company and company != "Select a Company":
         title = f"<h1 style='{style}'>No Data to Display</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         
+        
+        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+         "font-size: 100%")
+        text1 = """
+                Hey1
+        """
+        text2 = """
+                Hey2
+        """
+        title = f"<h1 style='{style}'>'{text1}'</h1>"
+        col6_1.write(title, unsafe_allow_html=True)
+        col6_2.write(title, unsafe_allow_html=True)
+        
     if col5_2.button("SASB SOC"):
         social_labels_score = social_df.groupby(social_df['Label']).mean()
         social_labels = social_labels_score.index.unique()
@@ -998,6 +1011,20 @@ if company and company != "Select a Company":
         
         title = 'Socail Capital Intelligence Score'
         plot_month_averages(social_month_avg,title, col6_2)
+        
+        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+         "font-size: 100%")
+        text1 = """
+                Hey1
+        """
+        text2 = """
+                Hey2
+        """
+        title = f"<h1 style='{style}'>'{text1}'</h1>"
+        col6_1.write(title, unsafe_allow_html=True)
+        col6_2.write(title, unsafe_allow_html=True)
+        
+        
     if col5_3.button("SASB HUM"):
         human_labels_score = human_capital_df.groupby(human_capital_df['Label']).mean()
 
@@ -1020,7 +1047,20 @@ if company and company != "Select a Company":
         
         title = 'Human Capital Intelligence Score'
         plot_month_averages(human_month_avg,title, col6_2)
-
+        
+        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+         "font-size: 100%")
+        text1 = """
+                Hey1
+        """
+        text2 = """
+                Hey2
+        """
+        title = f"<h1 style='{style}'>'{text1}'</h1>"
+        col6_1.write(title, unsafe_allow_html=True)
+        col6_2.write(title, unsafe_allow_html=True)
+        
+        
     if col5_4.button("SASB BUS"):
     
         bus_labels_score = business_df.groupby(business_df['Label']).mean()
@@ -1050,6 +1090,18 @@ if company and company != "Select a Company":
         title = 'Business Model & Innovation Intelligence Score'
         plot_month_averages(bus_month_avg,title, col6_2)
         
+        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+         "font-size: 100%")
+        text1 = """
+                Hey1
+        """
+        text2 = """
+                Hey2
+        """
+        title = f"<h1 style='{style}'>'{text1}'</h1>"
+        col6_1.write(title, unsafe_allow_html=True)
+        col6_2.write(title, unsafe_allow_html=True)
+        
         
     if col5_5.button("SASB LEAD"):
         gov_labels_score = gov_df.groupby(gov_df['Label']).mean()
@@ -1078,6 +1130,17 @@ if company and company != "Select a Company":
         title = 'Leadership & Governance Intelligence Score'
         plot_month_averages(gov_month_avg,title,col6_2)
         
+        style = ("text-align:center; padding: 0px; font-family: comic sans ms;, "
+         "font-size: 100%")
+        text1 = """
+                Hey1
+        """
+        text2 = """
+                Hey2
+        """
+        title = f"<h1 style='{style}'>'{text1}'</h1>"
+        col6_1.write(title, unsafe_allow_html=True)
+        col6_2.write(title, unsafe_allow_html=True)
         
         
         
