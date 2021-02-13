@@ -29,7 +29,7 @@ def make_bar_plot(categories, traceY, traceName, barY, barName, legendX, legendY
         )),
         secondary_y=True,
     )
-    fig.add_trace(go.Scatter(x=categories, y=[50]*len(categories) , name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+    fig.add_trace(go.Scatter(x=categories, y=[50]*len(categories) , name="Neutral", line = dict(color='#000000', width = 0.8, dash='dot'),mode="lines"),
         secondary_y=True,
     )
 
