@@ -433,7 +433,7 @@ if company and company != "Select a Company":
     fig.add_trace(go.Scatter(x=x, y=y2, name="Material Intelligence Score", line = dict(color='#8B008B', width = 3), line_shape='spline',mode="lines"),
     )
 
-    fig.add_trace(go.Scatter(x=x, y=[50]*len(x), name="Neutral", line = dict(color='#000000', width = 0.6, dash='dot'),mode="lines"),
+    fig.add_trace(go.Scatter(x=x, y=[50]*len(x), name="Neutral", line = dict(color='#000000', width = 0.8, dash='dot'),mode="lines"),
     )
 
     fig.update_layout(
@@ -511,11 +511,13 @@ if company and company != "Select a Company":
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-    fig.add_trace(go.Scatter(x=x, y=y_new1 , name="Intelligence Score", line = dict(color='#DDA0DD', width = 1), mode="lines"),
+    fig.add_trace(go.Scatter(x=x, y=y_new1 , name="Intelligence Score", line = dict(color='#DDA0DD', width = 3), mode="lines"),
         secondary_y=False,
     )
-    fig.add_trace(go.Scatter(x=x, y=y_new2, name="Adj. Closing Price", line = dict(color='#8B008B', width = 1), mode="lines"),
+    fig.add_trace(go.Scatter(x=x, y=y_new2, name="Adj. Closing Price", line = dict(color='#8B008B', width = 3), mode="lines"),
         secondary_y=True,
+    )
+    fig.add_trace(go.Scatter(x=x, y=[50]*len(x), name="Neutral", line = dict(color='#000000', width = 0.8, dash='dot'),mode="lines"),
     )
 
     # Add figure title
