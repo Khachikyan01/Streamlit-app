@@ -621,7 +621,7 @@ if company and company != "Select a Company":
 # 5th line
     col_T, col5_1, col5_2, col5_3, col5_4, col5_5 = st.beta_columns((0.25, 0.1, 0.1, 0.1, 0.1, 0.1))
 # 6th line
-    col6_T, col6_1, col6_2 = st.beta_columns((0.4, 3, 3))
+    col6_1, col6_2 = st.beta_columns((3, 3))
     col7_T, col7_1 = st.beta_columns((1, 5))
 # 7th line
     text1 = """
