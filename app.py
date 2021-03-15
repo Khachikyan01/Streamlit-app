@@ -180,7 +180,7 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-companies = ['Select a Company', 'Airbnb', 'Airbnb'] # companies list
+companies = ['Select a Company', 'Airbnb'] # companies list
 col0_1, col0_2, col0_3 =st.beta_columns((0.7, 1, 0.7))
 company = col0_2.selectbox('Select a Company to Analyze', companies)
 col0_2.write('---')
@@ -976,12 +976,12 @@ if company and company != "Select a Company":
         col6_2.write(""" """)
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
-        text1 = """
-                Hey1
-        """
-        text2 = """
-                Hey2
-        """
+#         text1 = """
+#                 Hey1
+#         """
+#         text2 = """
+#                 Hey2
+#         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         
@@ -1018,12 +1018,12 @@ if company and company != "Select a Company":
         
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
-        text1 = """
-                Hey1
-        """
-        text2 = """
-                Hey2
-        """
+#         text1 = """
+#                 Hey1
+#         """
+#         text2 = """
+#                 Hey2
+#         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         col6_2.markdown("---")
@@ -1058,12 +1058,12 @@ if company and company != "Select a Company":
         
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
-        text1 = """
-                Hey1
-        """
-        text2 = """
-                Hey2
-        """
+#         text1 = """
+#                 Hey1
+#         """
+#         text2 = """
+#                 Hey2
+#         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         col6_2.markdown("---")
@@ -1104,12 +1104,12 @@ if company and company != "Select a Company":
         
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
-        text1 = """
-                Hey1
-        """
-        text2 = """
-                Hey2
-        """
+#         text1 = """
+#                 Hey1
+#         """
+#         text2 = """
+#                 Hey2
+#         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         col6_2.markdown("---")
@@ -1148,12 +1148,12 @@ if company and company != "Select a Company":
         
         style = ("text-align:left; padding: 0px; font-family: comic sans ms;, "
          "font-size: 100%")
-        text1 = """
-                Hey1
-        """
-        text2 = """
-                Hey2
-        """
+#         text1 = """
+#                 Hey1
+#         """
+#         text2 = """
+#                 Hey2
+#         """
         title = f"<h1 style='{style}'>'{text1}'</h1>"
         col6_1.write(title, unsafe_allow_html=True)
         col6_2.markdown("---")
