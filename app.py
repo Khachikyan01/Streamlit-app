@@ -982,11 +982,11 @@ if company and company != "Select a Company":
 #         text2 = """
 #                 Hey2
 #         """
-        title = f"<h1 style='{style}'>'{text1}'</h1>"
-        col6_1.write(title, unsafe_allow_html=True)
+#         title = f"<h1 style='{style}'>'{text1}'</h1>"
+#         col6_1.write(title, unsafe_allow_html=True)
         
-        title= f"<h1 style='{style}'>'{text2}' </h1>"
-        col6_2.write(title, unsafe_allow_html=True)
+#         title= f"<h1 style='{style}'>'{text2}' </h1>"
+#         col6_2.write(title, unsafe_allow_html=True)
         
     if col5_2.button("SASB SOC"):
         social_labels_score = social_df.groupby(social_df['Label']).mean()
